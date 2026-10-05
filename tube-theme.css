@@ -1,0 +1,75 @@
+/* "tube" — a YouTube-style mobile theme for daisyUI 5 (events & community app).
+   Plain CSS variables, so it works with the daisyUI CDN build (no build step).
+   Use: <html data-theme="tube"> or <html data-theme="tubedark"> */
+
+[data-theme="tube"] {
+  color-scheme: light;
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(96.5% 0 0);
+  --color-base-300: oklch(91% 0 0);
+  --color-base-content: oklch(16% 0 0);
+  --color-primary: oklch(58% 0.25 27);          /* signature red */
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(22% 0 0);            /* near-black pill buttons */
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(62% 0.17 255);          /* link blue */
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(25% 0 0);
+  --color-neutral-content: oklch(96% 0 0);
+  --color-info: oklch(65% 0.15 240);
+  --color-info-content: oklch(100% 0 0);
+  --color-success: oklch(66% 0.17 150);
+  --color-success-content: oklch(100% 0 0);
+  --color-warning: oklch(80% 0.16 80);
+  --color-warning-content: oklch(25% 0.05 80);
+  --color-error: oklch(58% 0.25 27);
+  --color-error-content: oklch(100% 0 0);
+  --radius-selector: 1rem;   /* pill chips / badges */
+  --radius-field: 1.5rem;    /* pill buttons & inputs */
+  --radius-box: 0.75rem;     /* rounded video-style cards */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;                /* flat, no shadows */
+  --noise: 0;
+}
+
+[data-theme="tubedark"] {
+  color-scheme: dark;
+  --color-base-100: oklch(16% 0 0);
+  --color-base-200: oklch(22% 0 0);
+  --color-base-300: oklch(29% 0 0);
+  --color-base-content: oklch(97% 0 0);
+  --color-primary: oklch(62% 0.25 27);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(97% 0 0);            /* white pill buttons */
+  --color-secondary-content: oklch(16% 0 0);
+  --color-accent: oklch(75% 0.14 245);
+  --color-accent-content: oklch(18% 0.04 245);
+  --color-neutral: oklch(30% 0 0);
+  --color-neutral-content: oklch(96% 0 0);
+  --color-info: oklch(72% 0.14 240);
+  --color-info-content: oklch(18% 0.04 240);
+  --color-success: oklch(72% 0.17 150);
+  --color-success-content: oklch(18% 0.05 150);
+  --color-warning: oklch(82% 0.16 80);
+  --color-warning-content: oklch(25% 0.05 80);
+  --color-error: oklch(65% 0.24 27);
+  --color-error-content: oklch(100% 0 0);
+  --radius-selector: 1rem;
+  --radius-field: 1.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* Mobile-app helpers */
+.app-shell { max-width: 28rem; margin-inline: auto; min-height: 100dvh; position: relative; background: var(--color-base-100); }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.thumb-duration { position: absolute; right: .5rem; bottom: .5rem; }

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-theme="tube">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Gather — Events &amp; Community</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="tube-theme.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+<div class="app-shell pb-20">
+
+  <!-- Top app bar -->
+  <header class="navbar sticky top-0 z-30 bg-base-100 px-3 safe-top">
+    <div class="flex-1 gap-1 items-center">
+      <span class="grid place-items-center w-8 h-6 rounded-lg bg-primary text-primary-content">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>
+      </span>
+      <span class="text-xl font-bold tracking-tight">Gather</span>
+    </div>
+    <button class="btn btn-ghost btn-circle" aria-label="Cast">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 8V6a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2h-6M3 12a9 9 0 019 9M3 16a5 5 0 015 5M3 20h.01"/></svg>
+    </button>
+    <button class="btn btn-ghost btn-circle" aria-label="Notifications">
+      <div class="indicator">
+        <span class="indicator-item badge badge-primary badge-xs">9+</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0a3 3 0 11-6 0"/></svg>
+      </div>
+    </button>
+    <button class="btn btn-ghost btn-circle" aria-label="Search">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    </button>
+    <button class="btn btn-ghost btn-circle btn-sm" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <!-- Category chips -->
+  <nav class="sticky top-16 z-20 bg-base-100 safe-top">
+    <div class="flex gap-2 overflow-x-auto no-scrollbar px-3 py-2" id="chips">
+      <button class="btn btn-sm btn-secondary">All</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Today</button>
+      <button class="btn btn-sm btn-soft btn-neutral">This weekend</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Music</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Tech</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Sports</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Food</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Volunteering</button>
+      <button class="btn btn-sm btn-soft btn-neutral">Online</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Live now (stories-like row) -->
+    <section class="px-3 pt-2">
+      <h2 class="font-bold text-lg mb-2 flex items-center gap-2">
+        <span class="status status-primary animate-pulse"></span> Happening now
+      </h2>
+      <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+        <a class="flex flex-col items-center gap-1 shrink-0 w-16">
+          <div class="avatar"><div class="w-14 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100"><img src="https://i.pravatar.cc/100?img=12" alt=""></div></div>
+          <span class="text-xs truncate w-full text-center">Jazz Club</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 shrink-0 w-16">
+          <div class="avatar"><div class="w-14 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100"><img src="https://i.pravatar.cc/100?img=32" alt=""></div></div>
+          <span class="text-xs truncate w-full text-center">Dev Meetup</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 shrink-0 w-16">
+          <div class="avatar"><div class="w-14 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100"><img src="https://i.pravatar.cc/100?img=47" alt=""></div></div>
+          <span class="text-xs truncate w-full text-center">Run Crew</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 shrink-0 w-16">
+          <div class="avatar"><div class="w-14 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100"><img src="https://i.pravatar.cc/100?img=5" alt=""></div></div>
+          <span class="text-xs truncate w-full text-center">Book Club</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Event feed -->
+    <section class="mt-2 flex flex-col gap-6" id="feed"></section>
+
+    <!-- Community shelf -->
+    <section class="mt-6 px-3">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="font-bold text-lg">Communities for you</h2>
+        <a class="text-accent text-sm font-medium">See all</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <div class="avatar"><div class="w-12 rounded-full"><img src="https://i.pravatar.cc/100?img=15" alt=""></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium truncate">Downtown Makers</div>
+            <div class="text-xs opacity-60">12K members · 3 events this week</div>
+          </div>
+          <button class="btn btn-sm btn-secondary">Join</button>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="avatar"><div class="w-12 rounded-full"><img src="https://i.pravatar.cc/100?img=25" alt=""></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium truncate">Trail Runners Collective</div>
+            <div class="text-xs opacity-60">4.2K members · Weekly</div>
+          </div>
+          <button class="btn btn-sm btn-soft">Joined</button>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="avatar"><div class="w-12 rounded-full"><img src="https://i.pravatar.cc/100?img=52" alt=""></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium truncate">Neighbourhood Kitchen</div>
+            <div class="text-xs opacity-60">860 members · Volunteering</div>
+          </div>
+          <button class="btn btn-sm btn-secondary">Join</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community posts -->
+    <section class="mt-6 px-3">
+      <h2 class="font-bold text-lg mb-2">Community posts</h2>
+      <div class="card bg-base-200">
+        <div class="card-body p-4 gap-2">
+          <div class="flex items-center gap-2">
+            <div class="avatar"><div class="w-8 rounded-full"><img src="https://i.pravatar.cc/100?img=15" alt=""></div></div>
+            <div class="text-sm"><b>Downtown Makers</b> <span class="opacity-60">· 2h</span></div>
+          </div>
+          <p class="text-sm">Soldering workshop is moved to Room B. Bring your own iron if you can — we have 6 spares! 🔧</p>
+          <div class="flex gap-1 -ml-2">
+            <button class="btn btn-ghost btn-sm rounded-full">👍 248</button>
+            <button class="btn btn-ghost btn-sm rounded-full">💬 31</button>
+            <button class="btn btn-ghost btn-sm rounded-full">↗ Share</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FAB -->
+  <button class="btn btn-primary btn-circle btn-lg fixed bottom-24 right-4 z-30 shadow-lg" aria-label="Create event" onclick="document.getElementById('create').showModal()">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+
+  <!-- Bottom navigation -->
+  <div class="dock dock-sm fixed bottom-0 inset-x-0 mx-auto max-w-md bg-base-100 border-t border-base-300 z-40 safe-bottom">
+    <button class="dock-active">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3l9 8h-2v9h-5v-6h-4v6H5v-9H3z"/></svg>
+      <span class="dock-label">Home</span>
+    </button>
+    <button>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>
+      <span class="dock-label">Explore</span>
+    </button>
+    <button>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+      <span class="dock-label">My events</span>
+    </button>
+    <button>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0M16 4.5a3.5 3.5 0 010 7M18 14a6 6 0 013.5 6"/></svg>
+      <span class="dock-label">Community</span>
+    </button>
+    <button>
+      <div class="avatar"><div class="w-6 rounded-full"><img src="https://i.pravatar.cc/60?img=68" alt=""></div></div>
+      <span class="dock-label">You</span>
+    </button>
+  </div>
+
+  <!-- Create event modal (bottom sheet) -->
+  <dialog id="create" class="modal modal-bottom">
+    <div class="modal-box max-w-md mx-auto">
+      <h3 class="font-bold text-lg mb-3">Create event</h3>
+      <div class="flex flex-col gap-3">
+        <input class="input input-bordered w-full" placeholder="Event title">
+        <input type="datetime-local" class="input input-bordered w-full">
+        <input class="input input-bordered w-full" placeholder="Location or link">
+        <select class="select select-bordered w-full"><option>Music</option><option>Tech</option><option>Sports</option><option>Food</option></select>
+        <label class="label cursor-pointer justify-between"><span>Public event</span><input type="checkbox" class="toggle toggle-primary" checked></label>
+      </div>
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-2 w-full">
+          <button class="btn btn-ghost flex-1">Cancel</button>
+          <button class="btn btn-primary flex-1">Publish</button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+</div>
+
+<script>
+  const events = [
+    { img: 'https://picsum.photos/seed/jazz/800/450',  date: 'SAT 14', time: '7:00 PM', title: 'Rooftop Jazz Night — live quartet & street food', host: 'Jazz Club', avatar: 12, going: '1.2K going', when: 'This Saturday', tag: 'Music', live: false },
+    { img: 'https://picsum.photos/seed/dev/800/450',   date: 'TUE 17', time: '6:30 PM', title: 'Dev Meetup #42: Building offline-first apps', host: 'Dev Meetup', avatar: 32, going: '340 going', when: 'In 3 days', tag: 'Tech', live: true },
+    { img: 'https://picsum.photos/seed/run/800/450',   date: 'SUN 15', time: '8:00 AM', title: '5K Community Fun Run for the local food bank', host: 'Run Crew', avatar: 47, going: '860 going', when: 'This Sunday', tag: 'Sports', live: false },
+    { img: 'https://picsum.photos/seed/market/800/450',date: 'FRI 20', time: '4:00 PM', title: 'Night Market: 60 vendors, live DJs, free entry', host: 'Downtown Makers', avatar: 15, going: '5.4K going', when: 'Next Friday', tag: 'Food', live: false },
+  ];
+  document.getElementById('feed').innerHTML = events.map(e => `
+    <article>
+      <div class="relative">
+        <img class="w-full aspect-video object-cover sm:rounded-box" src="${e.img}" alt="" loading="lazy">
+        ${e.live ? '<span class="badge badge-primary badge-sm absolute left-2 top-2 font-semibold">● LIVE</span>' : ''}
+        <span class="badge badge-neutral thumb-duration font-semibold">${e.date} · ${e.time}</span>
+      </div>
+      <div class="flex gap-3 px-3 pt-3">
+        <div class="avatar shrink-0"><div class="w-9 h-9 rounded-full"><img src="https://i.pravatar.cc/100?img=${e.avatar}" alt=""></div></div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-semibold leading-snug line-clamp-2">${e.title}</h3>
+          <p class="text-xs opacity-60 mt-0.5">${e.host} · ${e.going} · ${e.when}</p>
+          <div class="flex gap-2 mt-2">
+            <button class="btn btn-xs btn-secondary" onclick="rsvp(this)">Interested</button>
+            <span class="badge badge-soft badge-sm self-center">${e.tag}</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-circle btn-sm" aria-label="More">⋮</button>
+      </div>
+    </article>`).join('');
+
+  function rsvp(b){ const on=b.classList.toggle('btn-secondary'); b.classList.toggle('btn-soft', !on); b.textContent=on?'Interested':'✓ Going'; }
+  function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='tube'?'tubedark':'tube'; h.dataset.theme=t; document.querySelector('meta[name=theme-color]').content=t==='tube'?'#ffffff':'#292929'; }
+  document.getElementById('chips').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    document.querySelectorAll('#chips button').forEach(x => { x.className='btn btn-sm btn-soft btn-neutral'; });
+    b.className='btn btn-sm btn-secondary';
+  });
+</script>
+</body>
+</html>
